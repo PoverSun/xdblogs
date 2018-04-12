@@ -1,0 +1,12 @@
+.article-content-addbtn{
+    width: 900px;
+    margin: 75px auto;
+}
+.input-group{
+    margin-bottom: 10px;
+}
+.form-horizontal .input-group .form-control .checkbox-inline{
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}

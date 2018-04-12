@@ -1,0 +1,25 @@
+.page-container{
+    margin-top:90px;
+    margin-left: 200px;
+}
+.table-striped{
+    width: 850px;
+}
+.table-striped th, .table-striped td {
+    text-align: center;
+    height:38px;
+}
+.table-striped>tbody>tr>td{
+    line-height: 1.42857143;
+    vertical-align: middle;
+    border-top: 1px solid #ddd;
+}
+.table-striped thead tr:first-child,.table-striped tbody tr:first-child{
+    text-align: left;
+}
+#form-update{
+    width: 320px;
+    height: 300px;
+    margin-top: 100px;
+    margin-left: 150px;
+}

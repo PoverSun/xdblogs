@@ -1,0 +1,63 @@
+{% extends "front_base.html" %}
+
+{% block titleblock %}
+	{{block.super}}
+	首页
+{% endblock titleblock %}
+
+
+{% block content %}
+    <div class="col-sm-8 blog-main">
+        {% for article in articles %}
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><a href="{% url 'front_article_detail' uid=article.pk %}">{{ article.title }}</a></h3>
+                </div>
+                <div class="panel-body">
+                    {{ article.content|truncatewords_html:"10" }}
+                    <br>
+                    <br>
+                    <span>
+                        <li>阅读量：0</li>
+                        <li>评论量：0</li>
+                        <li>发表时间：{{ article.pub_time| date:"Y-m-d H:i:s"}}</li>
+                    </span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="col-sm-4 blog-otherinfo">
+        <div class="list-group">
+            <a href="#" class="list-group-item active">
+                作者专栏
+            </a>
+            {% for author in authors %}
+                <a href="#" class="list-group-item">{{ author.name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="page-box">
+        <nav aria-label="Page navigation">
+            <span class="btn btn-primary">当前页：第{{ c_page }}页/共{{ all_pages }}页</span>
+            <ul class="pagination">
+                <li><a href="{% url 'front_index' page=1 %}">首页</a></li>
+                <li {% if c_page <= 1 %}class="disabled"{% endif %}>
+                    <a href="{% url 'front_index' page=c_page|add:-1 %}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                {% for page in pages %}
+                    <li {% if c_page == page %}class="active" {% endif %}><a href="{% url 'front_index' page=page %}">{{ page }}</a></li>
+                {% endfor %}
+
+                <li>
+                    <a href="{% url 'front_index' page=c_page|add:+1 %}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                <li {% if c_page == all_pages %}class="disabled"{% endif %}><a href="{% url 'front_index' page=all_pages %}">尾页</a></li>
+            </ul>
+        </nav>
+
+    </div>
+{% endblock content %}

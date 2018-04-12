@@ -1,0 +1,20 @@
+{% extends "front_base.html" %}
+
+{% block titleblock %}
+	{{block.super}}
+	关于
+{% endblock titleblock %}
+
+
+{% block content %}
+	<div class="jumbotron">
+	    <h1>Hello, djando!</h1>
+	    <p>在这里，你可以随手记录自己的生活，与朋友们分享图片、文字或是图文并茂的文章。我们相信，每个人都是生活中的艺术家，有着无穷的创造力。</p>
+	    <p>每一秒钟，都有用户通过简书创作出新的精彩，并与相同兴趣的人们在社区内进行互动。简书提供了最优雅的界面和最好的分享体验，包罗万象的专题，使得任何用户都可以在这个社区内创作，与同好交流。</p>
+	    <p>我们提供基于Django的web开发。</p>
+	    <p>对于产品如有任何疑问和建议，请联系我们：1070457631@qq.com</p>
+	    <p>网站：研发中</p>
+		<p>公司全称：西安极互云网络科技有限公司</p>
+	    <p><a class="btn btn-primary btn-lg" href="{% url 'front_index' %}" role="button">了解更多</a></p>
+	</div>	
+{% endblock content %}

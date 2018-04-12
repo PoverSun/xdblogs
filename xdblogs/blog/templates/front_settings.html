@@ -1,0 +1,98 @@
+{% extends 'front_base.html' %}
+
+{% load static  %}
+
+{% block css_js_block %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/front_settings.css' %}">
+    <script src="{% static 'js/front_settings.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="page-container">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist" id="myTabs">
+            <li role="presentation" class="active"><a href="#articles" aria-controls="articles" role="tab" data-toggle="tab">我的文章</a></li>
+            <li role="presentation"><a href="#update-pwd" aria-controls="messages" role="tab" data-toggle="tab">修改密码</a></li>
+            <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">扩展</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="articles">
+                <br><br><br>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="article-title">文章标题</th>
+                            <th>分类</th>
+                            <th>发表时间</th>
+                            <th>编辑</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for article in articles %}
+                            <tr>
+                                <td class="article-title">{{ article.title }}</td>
+                                <td>{{ article.categorys.name }}</td>
+                                <td>{{ article.pub_time| date:"Y-m-d H:i:s" }}</td>
+                                <td><a href="{% url 'front_edit_article' uid=article.uid %}" class="btn btn-primary">编辑</a>|{% if article.is_active %}
+                                <a href="{% url 'front_article_delete' uid=article.uid %}" class="btn btn-warning">移除</a>
+                                    {% else %}
+                                    <a href="{% url 'front_restore_delete' uid=article.uid %}" class="btn btn-info">恢复</a>
+                                {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="update-pwd">
+                <form class="form-horizontal" id="form-update" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <span class="btn btn-info">原始密码</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password" placeholder="请输入原始密码" id="password">
+                    </div>
+                    <div class="form-group">
+                        <span class="btn btn-info">新密码</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="new_password" placeholder="请输入新密码" id="new_password">
+                    </div>
+                    <div class="form-group">
+                        <span class="btn btn-info">确认密码</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="repeat_password" placeholder="请再次确认密码" id="repeat_password">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" id="reset-pwd-btn">点我修改密码</button>
+                    </div>
+                </form>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="settings">扩展功能</div>
+        </div>
+    </div>
+    {#    错误提示框#}
+    <div class="modal fade" tabindex="-1" id="error-tips" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">操作提示：</h4>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                </div>
+                <div class="modal-footer">
+                    <a href="{% url 'front_settings' %}" class="btn btn-warning reload-btn" >重新修改</a>
+                    <a href="{% url 'front_settings' %}" class="btn btn-success">返回</a>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    {#    成功提示框#}
+
+{% endblock %}

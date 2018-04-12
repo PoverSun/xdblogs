@@ -1,0 +1,35 @@
+.article-page{
+    width:1000px;
+    margin: 100px auto;
+}
+h1{
+    text-align: center;
+    font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+    color: cornflowerblue;
+    font-size: xx-large;
+    margin: 0 auto;
+}
+.article_content{
+    width:780px;
+    margin: 0 auto;
+}
+.article_content p{
+    text-indent: 2em;
+    font-family: "DejaVu Sans Mono";
+    font-size:21px;
+    color: dimgray;
+}
+.title-info{
+    width: 780px;
+    height: 80px;
+    margin: 0 auto;
+    padding: 0px;
+}
+.article-detail li{
+    float: left;
+    padding-right: 40px;
+    list-style: none;
+    font-family: "Century Schoolbook L";
+    color: aquamarine;
+}
+

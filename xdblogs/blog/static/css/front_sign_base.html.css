@@ -1,0 +1,36 @@
+.container{
+    width: 365px;
+    height: 750px;
+    margin-top: 100px;
+}
+.login-register-title{
+    width: 120px;
+    display: block;
+    margin: 0 auto;
+}
+.login-register-title a{
+    list-style: none;
+    font-size: 22px;
+}
+.logo{
+    font-size: 35px;
+    font-family: serif;
+    color: darkslategray;
+    text-align: center;
+}
+.sub-logo{
+    font-family: "AR PL UKai CN";
+    color: darkslategray;
+    font-size: 25px;
+    text-align: center;
+}
+.alert-success{
+    width: 300px;
+    margin: 0 auto;
+    text-align: center;
+}
+.alert-warning{
+    width: 300px;
+    margin: 0 auto;
+    text-align: center;
+}

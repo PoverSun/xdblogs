@@ -1,0 +1,75 @@
+{% extends 'front_base.html' %}
+{% load static %}
+
+{% block titleblock %}
+    {{ block.super }}
+{% endblock %}
+
+{% block css_js_block %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/front_article_add.css' %}">
+    <script src="{% static 'js/front_article_base.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="article-content-addbtn">
+        <form class="form-horizontal" method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                <p>{% block head_block %}{% endblock %}</p>
+            </div>
+            {% if error %}
+                <div class="input-group">
+                    <div class="alert alert-warning" role="alert">{{ error }}</div>
+                </div>
+            {% endif %}
+            <div class="input-group">
+                <span class="input-group-addon">标题</span>
+                <input type="text" class="form-control" name="title" id="input-title" placeholder="请输入文章标题..." value="{{ article.title }}">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">子标题</span>
+                <input type="text" class="form-control" name="subtitle" id="input-subtitle" placeholder="请输入文章子标题..." value="{{ article.subtitle }}">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">分类</span>
+                <select class="form-control" id="categorys">
+                    {% for category in categorys %}
+                        <option id="{{ category.id }}">{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">标签</span>
+                <div class="form-control" id="tags">
+                    {% for tag in tags %}
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="tag" value="{{ tag.id }}">{{ tag.name }}
+                        </label>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="input-group">
+                <textarea name="textarea" id="input-textarea" cols="109" rows="15">{{ article.content }}</textarea>
+            </div>
+            <div class="input-group">
+                <button class="btn btn-info btn-block submit-btn">{% block submit_block %}{% endblock %}</button>
+            </div>
+        </form>
+    </div>
+{#    模态框#}
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">{% block tipsblock %}{% endblock %}</h4>
+                </div>
+                <div class="modal-footer">
+                    {% block tipscontinue %}{% endblock %}
+                    <a href="{% url 'front_index' %}" class="btn btn-primary">返回</a>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+{% endblock %}

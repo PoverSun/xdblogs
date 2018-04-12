@@ -1,0 +1,29 @@
+{% extends "bootstrap_base.html" %}
+
+{% load static %}
+
+{% block titleblock %}
+    {{ block.super }}
+{% endblock %}
+
+{% block css_js_block %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/front_sign_base.html.css' %}">
+{% endblock %}
+
+{% block bodyblock %}
+    <div class="container">
+        <form class="form-horizontal" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <p class="logo">我的博客</p>
+                <p class="sub-logo">记录点滴,成长自我</p>
+            </div>
+            <div class="form-group">
+                <span class="login-register-title"><a href="{% url 'front_login' %}">登录</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="{% url 'front_regist' %}">注册</a></span>
+            </div>
+            {% block signblock %}
+            {% endblock %}
+        </form>
+    </div>
+{% endblock %}

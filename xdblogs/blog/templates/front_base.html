@@ -1,0 +1,61 @@
+{% extends "bootstrap_base.html" %}
+{% load static %}
+
+
+{% block titleblock %}
+	{{ block.super }}
+{% endblock titleblock %}
+
+
+{% block css_js_block %}
+    <link rel="stylesheet" href="{% static 'css/front_base.css' %}">
+    <script src="{% static 'js/front_base.js' %}"></script>
+{% endblock css_js_block %}
+
+
+{% block bodyblock %}
+    <div class="container">
+        <div class="row">
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="{% url 'front_index' page=1 %}">个人主页</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav" id="ul-tags">
+                            <li class="active"><a href="{% url 'front_index' page=1 %}">首页</a></li>
+                            <li><a href="{% url 'front_add_article' %}">添加文章</a></li>
+                            <li><a href="{% url 'front_about' %}">关于</a></li>
+                            <li><a href="{% url 'front_contact' %}">联系</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            {% if not front_user %}
+                                <span class="login-register-btn"><a href="{% url 'front_login' %}">登录</a>|<a href="{% url 'front_regist' %}">注册</a></span>
+                            {% else %}
+                                <li role="presentation" class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">当前用户：{{ front_user.name }}<span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">个人中心</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="{% url 'front_settings' %}">设置</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="{% url 'front_logout' %}">注销</a></li>
+                                    </ul>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+    	{% block content %}{% endblock content %}
+    </div>
+
+{% endblock bodyblock %}

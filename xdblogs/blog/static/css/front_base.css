@@ -1,0 +1,28 @@
+.blog-main{
+    margin-top:100px;
+    margin-left: 50px;
+}
+.blog-otherinfo{
+    margin-top:100px;
+    width:220px;
+}
+.panel-body span li{
+    float: right;
+    padding-right: 8px;
+    list-style: none;
+}
+.jumbotron{
+    width:1200px;
+    margin:0 auto;
+}
+.login-register-btn{
+    display: block;
+    padding-top: 14px;
+    font-size: 20px;
+}
+.page-box{
+    width: 400px;
+    height: 100px;
+    margin-bottom: 15px;
+    margin-left: 100px;
+}

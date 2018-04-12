@@ -1,0 +1,4 @@
+*.pyc
+*.idea/*
+*.vscode
+local_config.py

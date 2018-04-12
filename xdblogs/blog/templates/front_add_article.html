@@ -1,0 +1,23 @@
+{% extends "front_article_base.html" %}
+
+{% block titleblock %}
+    {{ block.super}}
+    添加文章
+{% endblock %}
+
+{% block head_block %}
+    添加文章
+{% endblock %}
+
+{% block submit_block %}
+    发表文章
+{% endblock %}
+
+
+{% block tipsblock %}
+    恭喜您！文章发布成功！
+{% endblock %}
+
+{% block tipscontinue %}
+    <a href="{% url 'front_add_article' %}" class="btn btn-default" data-dismiss="modal">继续发文章</a>
+{% endblock %}

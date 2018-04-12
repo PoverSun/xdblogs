@@ -1,0 +1,45 @@
+{% extends 'front_sign_base.html' %}
+
+{% block titleblock %}
+    登录
+{% endblock %}
+
+
+{% block signblock %}
+    <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">邮箱</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" name="email" placeholder="请输入邮箱...">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control" name="password" placeholder="请输入密码...">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="remember_me"> 记住我
+                </label>
+            </div>
+        </div>
+    </div>
+    {% if error %}
+        <div class="form-group">
+            <div class="alert alert-warning" role="alert">{{ error }}</div>
+        </div>
+    {% endif %}
+    {% if info %}
+        <div class="form-group">
+            <div class="alert alert-success" role="alert">{{ info }}</div>
+        </div>
+    {% endif %}
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success btn-block">登录</button>
+        </div>
+    </div>
+{% endblock %}
